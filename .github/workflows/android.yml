@@ -20,7 +20,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install --legacy-peer-deps
-          npm install @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
+          npm install react-is @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
 
       - name: Initialize Capacitor Configurations
         run: |
@@ -45,5 +45,4 @@ jobs:
         with:
           name: my-app-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
-
 
