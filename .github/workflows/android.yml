@@ -1,23 +1,48 @@
-name: Android CI
+name: Build Android APK
 on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: set up JDK 17
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew assembleDebug
-      - name: Upload APK
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+
+      - name: Initialize Capacitor Configurations
+        run: |
+          npx cap init "My AI App" "com.ranjan.myapp" --web-dir=dist
+
+      - name: Build Web App
+        run: npm run build
+
+      - name: Add Android Platform & Sync
+        run: |
+          npx cap add android
+          npx cap sync android
+
+      - name: Build APK with Gradle
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload Finished APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: my-app-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
 
