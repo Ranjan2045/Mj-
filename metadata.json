@@ -1,0 +1,6 @@
+{
+  "name": "MJ JEE Mock Tests",
+  "description": "Android application for ranjan2045r.blogspot.com featuring JEE Main full-syllabus mock tests, chapter-wise PYQs with website sync, offline practice, and CBT exam simulator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

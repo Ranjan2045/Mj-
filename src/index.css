@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Question embedded diagrams & SVGs */
+.diag {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  margin: 0.85rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  max-width: 100%;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.diag:empty {
+  display: none !important;
+}
+
+.diag svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Embedded tables in question statements */
+.mathjax-content table {
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-size: 0.85rem;
+}
+
+.mathjax-content th,
+.mathjax-content td {
+  border: 1px solid #334155;
+  padding: 0.4rem 0.75rem;
+  text-align: left;
+}
+
+.mathjax-content th {
+  background-color: rgba(30, 41, 59, 0.8);
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+/* Option inline SVGs (graph-based options) */
+.mathjax-content span svg {
+  display: inline-block;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.5rem;
+  padding: 2px 4px;
+}
+

@@ -1,0 +1,39 @@
+{
+  "id": "/",
+  "name": "MJ JEE Mock Tests",
+  "short_name": "MJ JEE Tests",
+  "description": "Android application for ranjan2045r.blogspot.com featuring JEE Main full-syllabus mock tests, offline practice, and CBT exam simulator.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0f75bc",
+  "background_color": "#020617",
+  "categories": ["education", "books", "test-prep"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
