@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # JOB 1: Build the Web assets and the Android APK
   build:
     runs-on: ubuntu-latest
     steps:
@@ -43,16 +44,11 @@ jobs:
       - name: Build Web App
         run: npm run build
 
-      # NEW: Upload the web app build folder (dist) for GitHub Pages hosting
+      # Prepares and packages the web directory for GitHub Pages hosting
       - name: Upload Web Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-
-      # NEW: Deploy the uploaded web assets live to the internet
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
 
       - name: Add Android Platform & Sync
         run: |
@@ -70,3 +66,15 @@ jobs:
         with:
           name: my-app-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  # JOB 2: Explicitly take the compiled web artifact and launch it live
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
