@@ -1,5 +1,17 @@
-name: Build Android APK
+name: Build and Deploy App
 on: [push, workflow_dispatch]
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,6 +42,17 @@ jobs:
 
       - name: Build Web App
         run: npm run build
+
+      # NEW: Upload the web app build folder (dist) for GitHub Pages hosting
+      - name: Upload Web Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      # NEW: Deploy the uploaded web assets live to the internet
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Add Android Platform & Sync
         run: |
