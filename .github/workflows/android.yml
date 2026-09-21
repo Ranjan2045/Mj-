@@ -20,11 +20,13 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install --legacy-peer-deps
-          npm install react-is @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
+          npm install react-is @capacitor/core@latest @capacitor/cli@latest @capacitor/android@latest --legacy-peer-deps
 
       - name: Initialize Capacitor Configurations
         run: |
-          npx cap init "My AI App" "com.ranjan.myapp" --web-dir=dist
+          if [ ! -f "capacitor.config.ts" ] && [ ! -f "capacitor.config.json" ]; then
+            npx cap init "My AI App" "com.ranjan.myapp" --web-dir=dist
+          fi
 
       - name: Build Web App
         run: npm run build
@@ -45,4 +47,3 @@ jobs:
         with:
           name: my-app-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
-
