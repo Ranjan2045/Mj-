@@ -2,6 +2,13 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/Mj-/', // 👈 ADD THIS EXACT LINE (with your repo name)
+})
 
 export default defineConfig(() => {
   return {
